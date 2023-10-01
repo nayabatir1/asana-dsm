@@ -1,0 +1,35 @@
+.container {
+  width: 400px;
+  padding: 20px;
+  border-radius: 20px;
+  border: 5px solid gray;
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+div > label {
+  display: inline-block;
+  width: 150px;
+}
+
+input {
+  flex-grow: 1;
+  margin-top: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+button {
+  margin-bottom: 15px;
+}
+
+#error {
+  margin-top: 0;
+  color: red;
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
+    <script src="./extension.js" type="module" defer></script>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section>
+      <div class="container">
+        <div>
+          <label for="token"> asana access token </label>
+          <input name="token" type="text" id="token" />
+        </div>
+        <div>
+          <label for="email"> Email </label>
+          <input name="email" type="email" id="email" />
+        </div>
+
+        <p class="hidden" id="error"></p>
+        <button id="save">Save</button>
+        <button id="copy">Copy DSM</button>
+      </div>
+    </section>
+  </body>
+</html>
