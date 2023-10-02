@@ -11,6 +11,7 @@ The is DSM is in markdown format, which can be directly posted in slack or any o
 Open any asana project in the browser and click on **Copy DSM**, script will take url from browser url and fetch relavant data of this project. To fetch other project details, just change project in asana and click **Copy DSM** that's it, DSM will be copied.
 
 ![screenshot](./images/screenshot.png)
+![screenshot2](./images/screenshot2.png)
 
 ## Getting Started
 
