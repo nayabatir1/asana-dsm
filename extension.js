@@ -27,6 +27,7 @@ const errorEle = document.getElementById("error");
 const saveBtn = document.getElementById("save");
 const emailEle = document.getElementById("email");
 const tokenEle = document.getElementById("token");
+const mainEle = document.getElementById("main");
 
 saveBtn.onclick = save;
 copyBtn.onclick = start;
@@ -178,13 +179,8 @@ async function save() {
   const email = emailEle.value;
   const token = tokenEle.value;
 
-  const u = await getUrl();
-  console.log(u);
-
-  await Promise.allSettled([
-    saveDataToLocalStorage(localStorageKeys.token, token),
-    saveDataToLocalStorage(localStorageKeys.email, email),
-  ]);
+  await saveDataToLocalStorage(localStorageKeys.token, token);
+  await saveDataToLocalStorage(localStorageKeys.email, email);
 
   copyBtn.disabled = false;
 
@@ -199,6 +195,12 @@ document.addEventListener("DOMContentLoaded", async function () {
     ]);
 
     const url = await getUrl();
+
+    if (!url.includes("app.asana.com")) {
+      mainEle.innerText = "This is not Asana task page";
+      mainEle.classList.add("text-red");
+      return;
+    }
 
     project = url.split("/")[4];
 
@@ -219,24 +221,14 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
 
 // save data to localStorage
-function saveDataToLocalStorage(key, value) {
-  return new Promise(async (res, rej) => {
-    let data = await getDataFromLocalStorage({});
+async function saveDataToLocalStorage(key, value) {
+  let data = await getDataFromLocalStorage({});
 
-    if (!data) data = {};
+  if (!data) data = {};
 
-    data[key] = value;
+  data[key] = value;
 
-    chrome.storage.sync.set(data, function () {
-      if (chrome.runtime.lastError) {
-        rej(
-          "Failed to save data to local storage: " + chrome.runtime.lastError
-        );
-
-        res();
-      }
-    });
-  });
+  return chrome.storage.sync.set(data);
 }
 
 // Retrieve data from localStorage
