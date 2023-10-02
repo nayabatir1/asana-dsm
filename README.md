@@ -27,8 +27,7 @@ This is a chrome extension
 
 Contributors names and contact info
 
-ex. Atir Nayab
-ex. [@DomPizzie](https://twitter.com/dompizzie)
+- Atir Nayab
 
 ## Version History
 
