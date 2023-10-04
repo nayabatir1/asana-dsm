@@ -10,8 +10,8 @@ Directly copy and paste DSM in your preferred text editor or software applicatio
 
 Open any asana project in the browser and click on **Copy DSM**, script will take url from browser url and fetch relavant data of this project. To fetch other project details, just change project in asana and click **Copy DSM** that's it, DSM will be copied.
 
-<img src='./images/screenshot.png' height="300" width="300" /><br><br>
-<img src='./images/screenshot2.png' height="300" width="300" />
+<img src='./images/screenshot.png' height="300" width="500" /><br><br>
+<img src='./images/screenshot2.png' height="300" width="500" />
 
 ## Getting Started
 
