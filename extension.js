@@ -84,15 +84,14 @@ async function fetchToday(name) {
         .filter((d) => d.completed_by)
         .filter((d_1) => d_1.completed_by.name === name);
 
-      let text = "*Today*\n";
+      if (!temp.length) res(null);
 
-      if (!temp.length) text += "- --";
-
+      const obj = {};
       temp.forEach((d_2) => {
-        text += `- [${d_2.name}](${d_2.permalink_url})\n`;
+        obj[d_2.name] = d_2.permalink_url;
       });
 
-      res(text);
+      res(obj);
     } catch (error) {
       rej(error);
     }
@@ -130,15 +129,14 @@ async function fetchTomorrow(name) {
         .filter((g) => !String(g.name).toLowerCase().includes("review"))
         .filter((g) => !String(g.name).toLowerCase().includes("meet"));
 
-      let text = "*Tomorrow*\n";
+      if (!temp.length) res(null);
 
-      if (!temp.length) text += "- --";
-
+      const obj = {};
       temp.forEach((d_2) => {
-        text += `- [${d_2.name}](${d_2.permalink_url})\n`;
+        obj[d_2.name] = d_2.permalink_url;
       });
 
-      res(text);
+      res(obj);
     } catch (error) {
       rej(error);
     }
@@ -161,9 +159,51 @@ async function start() {
       fetchTomorrow(name),
     ]);
 
-    const text = today + "\n\n" + tomorrow + "\n\n*Blocker*\n- --";
+    let text = "Today\n";
+    let html = "<strong>Today</strong><br>";
 
-    await navigator.clipboard.writeText(text);
+    if (today) {
+      html += "<ul>";
+      for (let [key, val] of Object.entries(today)) {
+        html += `<li><a href="${val}">${key}</a></li>`;
+        text += `- ${key}\n`;
+      }
+      html += "</ul><br>";
+      text += "\n";
+    } else {
+      html += "<ul><li> --</li></ul><br>";
+      text += "- --\n\n";
+    }
+
+    html += "<strong>Tomorrow</strong><br>";
+    text += "Tomorrow\n";
+
+    if (tomorrow) {
+      html += "<ul>";
+      for (let [key, val] of Object.entries(tomorrow)) {
+        html += `<li><a href="${val}">${key}</a></li>`;
+        text += `- ${key}\n`;
+      }
+      html += "</ul><br>";
+      text += "\n";
+    } else {
+      html += "<ul><li> --</li></ul><br>";
+      text += "- --\n\n";
+    }
+
+    html += "<strong>Blocker</strong><br><ul><li>--</li></ul>";
+    text += "Blocker\n- --";
+
+    await navigator.clipboard.write([
+      new ClipboardItem({
+        "text/plain": new Blob([text], {
+          type: "text/plain",
+        }),
+        "text/html": new Blob([html], {
+          type: "text/html",
+        }),
+      }),
+    ]);
 
     copyBtn.disabled = false;
   } catch (error) {
