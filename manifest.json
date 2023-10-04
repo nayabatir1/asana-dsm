@@ -8,8 +8,10 @@
     "default_popup": "index.html",
     "default_title": "DSM",
     "default_icon": {
-      "16": "images/favicon-16x16.png",
-      "32": "images/favicon-32x32.png"
+      "16": "images/16.png",
+      "32": "images/32.png",
+      "48": "images/48.png",
+      "128": "images/128.png"
     }
   },
   "permissions": ["storage", "tabs"],
