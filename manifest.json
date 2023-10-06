@@ -4,15 +4,15 @@
   "description": "Effeciently copy project DSM",
   "manifest_version": 3,
   "author": "Atir Nayab",
+  "icons": {
+    "16": "images/16.png",
+    "32": "images/32.png",
+    "48": "images/48.png",
+    "128": "images/128.png"
+  },
   "action": {
     "default_popup": "index.html",
-    "default_title": "DSM",
-    "default_icon": {
-      "16": "images/16.png",
-      "32": "images/32.png",
-      "48": "images/48.png",
-      "128": "images/128.png"
-    }
+    "default_title": "DSM"
   },
   "permissions": ["storage", "tabs"],
   "host_permissions": ["https://app.asana.com/*"]
